@@ -43,6 +43,68 @@ export const theme = createMuiTheme({
       dark: colors.secondary,
       contrastText: '#fff',
     }
+  },
+  overrides: {
+    MuiFormLabel: {
+      root: {
+        color: colors.text,
+        fontWeight: 700,
+        fontSize: '0.9rem',
+        '&$focused': {
+          color: colors.text,
+        },
+        '&$disabled': {
+          
+        },
+      },
+    },
+    MuiInputLabel: {
+      formControl: {
+        transform: 'translate(0, 1.5px) scale(0.75)',
+        transformOrigin: 'top left',
+      },
+      shrink: {
+        transform: 'translate(0, 1.5px) scale(0.75)',
+        transformOrigin: 'top left',
+      },
+      animated: {
+        transition: 'none'
+      }
+    },
+    MuiInput: {
+      root: {
+        border: `1px solid #eef2f5`,
+        borderRadius: '5px',
+        '&:hover': {
+          border: `1px solid #BCD0FF`,
+        },
+        '&$focused': {
+          border: `1px solid #BCD0FF`,
+        },
+        '&$error': {
+          border: `1px solid #EE2C62`,
+        },
+      },
+      input: {
+        padding: '0.5rem',
+        lineHeight: '1.15',
+        fontSize: '0.8rem',
+      },
+      underline: {
+        '&:after': {
+          borderBottom: 'none',
+        },
+        '&$focused:after': {
+          borderBottom: 'none',
+        },
+        '&:before': {
+          borderBottom: 'none',
+        },
+        '&:hover:not($disabled):not($focused):not($error):before': {
+          borderBottom: 'none',
+        }
+      },
+    }
   }
 });
 
