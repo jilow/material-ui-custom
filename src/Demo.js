@@ -103,6 +103,9 @@ class Demo extends React.Component {
 
           <div className={classes.section}>
             <div>
+              <Button disabled="true" className={classes.button}>
+                Disabled
+              </Button>
               <Button className={classes.button}>
                 Default
               </Button>
@@ -114,6 +117,9 @@ class Demo extends React.Component {
               </Button>
             </div>
             <div>
+              <Button variant="contained" disabled="true" className={classes.button}>
+                Disabled
+              </Button>
               <Button variant="contained" className={classes.button}>
                 Default
               </Button>
