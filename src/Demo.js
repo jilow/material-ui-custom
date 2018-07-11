@@ -1,23 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import CustomTheme, { theme } from './Theme'
-import image from './contemplative-reptile.jpg'
+import { withStyles } from '@material-ui/core'
+// import CssBaseline from '@material-ui/core/CssBaseline'
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import Icon from '@material-ui/core/Icon'
 
-import { withStyles } from '@material-ui/core';
-
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Icon from '@material-ui/core/Icon';
+import ThemeWrapper, { theme } from './lib/index'
+import image from './assets/contemplative-reptile.jpg'
 
 const styles = muiTheme => {
-  console.log(muiTheme)
+  console.log(theme, muiTheme)
   return {
     main: {
       ...theme.typography,
@@ -44,14 +43,15 @@ const styles = muiTheme => {
       paddingTop: '56.25%', // 16:9
     },
   }
-};
+}
 
-class App extends React.Component {
+class Demo extends React.Component {
   constructor(props) {
     super(props)
     this.props = props
     this.state = {
-      name: 'Foobar'
+      name: 'Foobar',
+      loading: false,
     }
   }
   handleChange = name => event => {
@@ -59,24 +59,27 @@ class App extends React.Component {
       [name]: event.target.value,
     })
   }
+  handleClick = () => event => {
+    this.setState({
+      loading: true
+    }) 
+  }
   render() {
     const {classes} = this.props
     return (
       <div className={classes.main}>
 
-        <CustomTheme>
+        <ThemeWrapper>
 
           {/* Works like reset.css */}
-          <CssBaseline />
+          {/* <CssBaseline /> */}
 
           <div className={classes.section}>
             <h1>h1. The quick brown fox jumps over the lazy dog.</h1>
             <h2>h3. The quick brown fox jumps over the lazy dog.</h2>
             <h3>h3. The quick brown fox jumps over the lazy dog.</h3>
             <p>p. The quick brown fox jumps over the lazy dog.</p>
-          </div>
-
-          <div className={classes.section}>
+            <br/>
             <Typography variant="headline" gutterBottom>
               Headline. The quick brown fox jumps over the lazy dog.
             </Typography>
@@ -118,15 +121,15 @@ class App extends React.Component {
               </Button>
             </div>
             <div>
-            <Button variant="fab" color="primary" aria-label="add" className={classes.button}>
-              <Icon>add_icon</Icon>
-            </Button>
-            <Button variant="fab" color="secondary" aria-label="edit" className={classes.button}>
-              <Icon>edit_icon</Icon>
-            </Button>
-            <Button variant="fab" disabled aria-label="delete" className={classes.button}>
-              <Icon>delete_icon</Icon>
-            </Button>
+              <Button variant="fab" color="primary" aria-label="add" className={classes.button}>
+                <Icon>add_icon</Icon>
+              </Button>
+              <Button variant="fab" color="secondary" aria-label="edit" className={classes.button}>
+                <Icon>edit_icon</Icon>
+              </Button>
+              <Button variant="fab" disabled aria-label="delete" className={classes.button}>
+                <Icon>delete_icon</Icon>
+              </Button>
             </div>
           </div>
 
@@ -154,7 +157,6 @@ class App extends React.Component {
                 error
                 id="error"
                 label="Error"
-                defaultValue="Hello World"
                 className={classes.textField}
                 value={this.state.name}
                 onChange={this.handleChange('name')}
@@ -190,15 +192,15 @@ class App extends React.Component {
             </Card>
           </div>
 
-        </CustomTheme>
+        </ThemeWrapper>
 
       </div>
-    );
+    )
   }
 }
 
-App.propTypes = {
+Demo.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(styles, { withTheme: theme })(App)
+export default withStyles(styles, { withTheme: theme })(Demo)

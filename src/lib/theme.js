@@ -1,18 +1,13 @@
-import React from 'react';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import * as Colors from '@material-ui/core/colors/';
+import { createMuiTheme } from '@material-ui/core/styles'
 
-console.log(Colors)
-
-const colors = {
+export const colors = {
   text: '#333d51',
   primary: '#f13e5f',
   secondary: '#333d51'
 }
 
-export const theme = createMuiTheme({
+const theme = createMuiTheme({
   typography: {
-    // Use the system font instead of the default Roboto font.
     fontFamily: [
       'Montserrat',
       'Arial',
@@ -53,8 +48,7 @@ export const theme = createMuiTheme({
         '&$focused': {
           color: colors.text,
         },
-        '&$disabled': {
-          
+        '&$disabled': {         
         },
       },
     },
@@ -106,14 +100,6 @@ export const theme = createMuiTheme({
       },
     }
   }
-});
+})
 
-const Theme = props => {
-  return (
-    <MuiThemeProvider theme={theme}>
-      {props.children}
-    </MuiThemeProvider>
-  )
-}
-
-export default Theme
+export default theme
