@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import { withStyles } from '@material-ui/core'
 // import CssBaseline from '@material-ui/core/CssBaseline'
+import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
@@ -11,8 +12,10 @@ import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Icon from '@material-ui/core/Icon'
+import Tooltip from '@material-ui/core/Tooltip'
 
 import ThemeWrapper, { theme } from './lib/index'
+import CustomButton from './lib/components/CustomButton'
 import image from './assets/contemplative-reptile.jpg'
 
 const styles = muiTheme => {
@@ -59,13 +62,14 @@ class Demo extends React.Component {
       [name]: event.target.value,
     })
   }
-  handleClick = () => event => {
+  handleClick = (value) => event => {
     this.setState({
-      loading: true
+      loading: value
     }) 
   }
   render() {
     const {classes} = this.props
+    const {name, loading} = this.state
     return (
       <div className={classes.main}>
 
@@ -121,6 +125,23 @@ class Demo extends React.Component {
               </Button>
             </div>
             <div>
+             <ClickAwayListener onClickAway={this.handleClick(false)}>
+                <CustomButton
+                  onClick={this.handleClick(true)}
+                  loading={loading}
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}>
+                  Loader
+                </CustomButton>
+              </ClickAwayListener>
+              <Tooltip title="Howdy!">
+                <Button variant="contained" color="secondary" className={classes.button}>
+                  Tooltip
+                </Button>
+              </Tooltip>
+            </div>
+            <div>
               <Button variant="fab" color="primary" aria-label="add" className={classes.button}>
                 <Icon>add_icon</Icon>
               </Button>
@@ -139,7 +160,7 @@ class Demo extends React.Component {
                 id="name"
                 label="Name"
                 className={classes.textField}
-                value={this.state.name}
+                value={name}
                 onChange={this.handleChange('name')}
                 margin="normal"
               />
@@ -147,7 +168,7 @@ class Demo extends React.Component {
                 id="password-input"
                 label="Password"
                 className={classes.textField}
-                value={this.state.name}
+                value={name}
                 onChange={this.handleChange('name')}
                 type="password"
                 autoComplete="current-password"
@@ -158,7 +179,7 @@ class Demo extends React.Component {
                 id="error"
                 label="Error"
                 className={classes.textField}
-                value={this.state.name}
+                value={name}
                 onChange={this.handleChange('name')}
                 margin="normal"
               />
